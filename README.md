@@ -5,7 +5,7 @@ Get OpenAI chat response in real-time.
 Usage:
 
 ```ts
-import { getCompletionStream } from "https://deno.land/x/openai-chat-stream/mod.ts";
+import { getCompletionStream } from "https://deno.land/x/openai_chat_stream/mod.ts";
 
 const stream = getCompletionStream({
   apiKey: "YOUR_OPENAI_API_KEY",
