@@ -25,6 +25,16 @@ export async function* getCompletionStream(
     }),
   });
 
+  if (!resp.ok) {
+    const json = await resp.json();
+    if (json.error) {
+      throw new Error(`API error ${json.error.code}`);
+    } else {
+      console.error(json);
+      throw new Error(`Unknown API response`);
+    }
+  }
+
   for await (const json of readStreamAsEvents(resp.body!)) {
     const { delta, finish_reason } = json.choices[0];
     const { content } = delta;
