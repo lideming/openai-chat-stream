@@ -8,6 +8,16 @@ export interface Message {
 export async function* getCompletionStream(
   options: {
     messages: Message[];
+    params?: {
+      temperature?: number;
+      top_p?: number;
+      stop?: string | string[];
+      max_tokens?: number;
+      presence_penalty?: number;
+      frequency_penalty?: number;
+      logit_bias?: number;
+      user?: string;
+    };
     apiKey: string;
     onFinished?: (reason: string) => void;
   },
@@ -22,6 +32,7 @@ export async function* getCompletionStream(
       model: "gpt-3.5-turbo",
       messages: options.messages,
       stream: true,
+      ...options.params,
     }),
   });
 
